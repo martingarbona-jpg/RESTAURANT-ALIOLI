@@ -517,38 +517,40 @@
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form">
+        <form id="reservation-form" role="form" class="reservation-form" novalidate>
           <div class="row gy-4">
             <div class="col-lg-4 col-md-6">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" required="">
+              <input type="text" name="nombre" class="form-control" id="reservation-name" placeholder="Nombre" required="">
             </div>
             <div class="col-lg-4 col-md-6">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="">
+              <input type="tel" class="form-control" name="telefono" id="reservation-phone" placeholder="Teléfono / WhatsApp" required="">
             </div>
             <div class="col-lg-4 col-md-6">
-              <input type="text" class="form-control" name="phone" id="phone" placeholder="Teléfono" required="">
+              <input type="date" name="fecha" class="form-control" id="reservation-date" placeholder="Fecha" required="">
             </div>
             <div class="col-lg-4 col-md-6">
-              <input type="date" name="date" class="form-control" id="date" placeholder="Fecha" required="">
+              <input type="number" class="form-control" name="personas" id="reservation-people" placeholder="Cantidad de personas" min="1" max="20" required="">
             </div>
             <div class="col-lg-4 col-md-6">
-              <input type="time" class="form-control" name="time" id="time" placeholder="Horario" required="">
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <input type="number" class="form-control" name="people" id="people" placeholder="Cantidad de personas" required="">
+              <div class="reservation-turno" aria-label="Turno fijo">
+                <span class="reservation-turno-label">Turno:</span>
+                <strong>Mediodía</strong>
+              </div>
             </div>
           </div>
 
+          <p class="reservation-help mt-3 mb-0">Solo tomamos reservas para sábados, domingos y feriados al mediodía.</p>
+
           <div class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Mensaje"></textarea>
+            <textarea class="form-control" name="observaciones" id="reservation-notes" rows="5" placeholder="Observaciones (opcional)"></textarea>
           </div>
 
           <div class="text-center mt-3">
-            <div class="loading">Enviando...</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Recibimos tu solicitud. Te responderemos por WhatsApp para confirmar la reserva. ¡Gracias!</div>
-            <button type="submit">Enviar solicitud</button>
+            <div class="reservation-feedback" id="reservation-feedback" role="alert" aria-live="polite"></div>
+            <button type="submit" id="reservation-submit">Enviar reserva</button>
           </div>
+
+          <p class="reservation-whatsapp-note mt-3 mb-0 text-center">También podés reservar o consultar por WhatsApp.</p>
         </form><!-- End Reservation Form -->
 
       </div>
