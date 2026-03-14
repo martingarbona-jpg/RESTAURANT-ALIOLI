@@ -1399,12 +1399,14 @@ section,
   background: color-mix(in srgb, var(--default-color), transparent 97%);
 }
 
-.book-a-table .php-email-form {
+.book-a-table .php-email-form,
+.book-a-table .reservation-form {
   padding: 30px;
 }
 
 @media (max-width: 575px) {
-  .book-a-table .php-email-form {
+  .book-a-table .php-email-form,
+.book-a-table .reservation-form {
     padding: 20px;
   }
 }
@@ -1414,7 +1416,12 @@ section,
 .book-a-table .php-email-form input[type=number],
 .book-a-table .php-email-form input[type=date],
 .book-a-table .php-email-form input[type=time],
-.book-a-table .php-email-form textarea {
+.book-a-table .php-email-form textarea,
+.book-a-table .reservation-form input[type=text],
+.book-a-table .reservation-form input[type=tel],
+.book-a-table .reservation-form input[type=number],
+.book-a-table .reservation-form input[type=date],
+.book-a-table .reservation-form textarea {
   font-size: 14px;
   padding: 10px 15px;
   box-shadow: none;
@@ -1429,7 +1436,12 @@ section,
 .book-a-table .php-email-form input[type=number]:focus,
 .book-a-table .php-email-form input[type=date]:focus,
 .book-a-table .php-email-form input[type=time]:focus,
-.book-a-table .php-email-form textarea:focus {
+.book-a-table .php-email-form textarea:focus,
+.book-a-table .reservation-form input[type=text]:focus,
+.book-a-table .reservation-form input[type=tel]:focus,
+.book-a-table .reservation-form input[type=number]:focus,
+.book-a-table .reservation-form input[type=date]:focus,
+.book-a-table .reservation-form textarea:focus {
   border-color: var(--accent-color);
 }
 
@@ -1438,11 +1450,17 @@ section,
 .book-a-table .php-email-form input[type=number]::placeholder,
 .book-a-table .php-email-form input[type=date]::placeholder,
 .book-a-table .php-email-form input[type=time]::placeholder,
-.book-a-table .php-email-form textarea::placeholder {
+.book-a-table .php-email-form textarea::placeholder,
+.book-a-table .reservation-form input[type=text]::placeholder,
+.book-a-table .reservation-form input[type=tel]::placeholder,
+.book-a-table .reservation-form input[type=number]::placeholder,
+.book-a-table .reservation-form input[type=date]::placeholder,
+.book-a-table .reservation-form textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-.book-a-table .php-email-form button[type=submit] {
+.book-a-table .php-email-form button[type=submit],
+.book-a-table .reservation-form button[type=submit] {
   color: var(--default-color);
   border: 2px solid var(--accent-color);
   background: transparent;
@@ -1451,8 +1469,61 @@ section,
   border-radius: 50px;
 }
 
-.book-a-table .php-email-form button[type=submit]:hover {
+.book-a-table .php-email-form button[type=submit]:hover,
+.book-a-table .reservation-form button[type=submit]:hover {
   background: var(--accent-color);
+}
+
+
+
+.book-a-table .reservation-turno {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: color-mix(in srgb, var(--background-color), transparent 20%);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.book-a-table .reservation-turno-label {
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+}
+
+.book-a-table .reservation-help,
+.book-a-table .reservation-whatsapp-note {
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.book-a-table .reservation-feedback {
+  display: none;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid transparent;
+}
+
+.book-a-table .reservation-feedback.is-visible {
+  display: block;
+}
+
+.book-a-table .reservation-feedback.is-success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+
+.book-a-table .reservation-feedback.is-error {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+
+.book-a-table .reservation-form button[type=submit]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /*--------------------------------------------------------------

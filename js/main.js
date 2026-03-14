@@ -201,4 +201,92 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+
+  /**
+   * Reservation form submission via Google Apps Script
+   */
+  const reservationForm = document.querySelector('#reservation-form');
+  if (reservationForm) {
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyrwBJURyfF3jAUtHFaxmopEL8lo439L1OUcnjnWyrrI-wzl-d2R3zXSyJqCkQN1Vw/exec";
+    const submitButton = reservationForm.querySelector('#reservation-submit');
+    const feedback = reservationForm.querySelector('#reservation-feedback');
+
+    const successText = "Reserva registrada correctamente. Te esperamos al mediodía.";
+    const connectionErrorText = "No se pudo conectar con el sistema de reservas. Intentá nuevamente.";
+
+    const showFeedback = (message, type = 'error') => {
+      feedback.textContent = message;
+      feedback.classList.add('is-visible');
+      feedback.classList.remove('is-success', 'is-error');
+      feedback.classList.add(type === 'success' ? 'is-success' : 'is-error');
+      feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    const getField = (name) => reservationForm.elements[name];
+
+    reservationForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const nombre = getField('nombre').value.trim();
+      const telefono = getField('telefono').value.trim();
+      const fecha = getField('fecha').value;
+      const personas = Number(getField('personas').value);
+      const observaciones = getField('observaciones').value.trim();
+
+      if (!nombre || !telefono || !fecha || !personas) {
+        showFeedback('Completá nombre, teléfono, fecha y cantidad de personas para reservar.');
+        return;
+      }
+
+      if (!Number.isInteger(personas) || personas <= 0) {
+        showFeedback('La cantidad de personas debe ser mayor a 0.');
+        return;
+      }
+
+      if (personas > 20) {
+        showFeedback('La reserva por este medio admite hasta 20 personas por solicitud.');
+        return;
+      }
+
+      submitButton.disabled = true;
+      const originalButtonText = submitButton.textContent;
+      submitButton.textContent = 'Enviando...';
+
+      try {
+        const response = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            nombre,
+            telefono,
+            fecha,
+            personas,
+            observaciones
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.ok) {
+          showFeedback(successText, 'success');
+          reservationForm.reset();
+          return;
+        }
+
+        const backendMessage = typeof data.message === 'string' && data.message.trim()
+          ? data.message.trim()
+          : 'No hay lugar disponible para esa fecha.';
+
+        showFeedback(backendMessage);
+      } catch (error) {
+        showFeedback(connectionErrorText);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    });
+  }
+
 })();
