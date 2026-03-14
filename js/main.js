@@ -207,7 +207,7 @@
    */
   const reservationForm = document.querySelector('#reservation-form');
   if (reservationForm) {
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyrwBJURyfF3jAUtHFaxmopEL8lo439L1OUcnjnWyrrI-wzl-d2R3zXSyJqCkQN1Vw/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZ8wrQr3ProkdRPIgHm2o9TRmsQ4XATI968kK4r8VqLsekf3Fv0UYf1Id9f1BVu2vC/exec";
     const submitButton = reservationForm.querySelector('#reservation-submit');
     const feedback = reservationForm.querySelector('#reservation-feedback');
 
