@@ -253,18 +253,16 @@
       submitButton.textContent = 'Enviando...';
 
       try {
+        const params = new URLSearchParams();
+        params.append('nombre', nombre);
+        params.append('telefono', telefono);
+        params.append('fecha', fecha);
+        params.append('personas', personas);
+        params.append('observaciones', observaciones || '');
+
         const response = await fetch(APPS_SCRIPT_URL, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            nombre,
-            telefono,
-            fecha,
-            personas,
-            observaciones
-          })
+          body: params
         });
 
         const data = await response.json();
