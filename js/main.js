@@ -207,11 +207,11 @@
    */
   const reservationForm = document.querySelector('#reservation-form');
   if (reservationForm) {
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZ8wrQr3ProkdRPIgHm2o9TRmsQ4XATI968kK4r8VqLsekf3Fv0UYf1Id9f1BVu2vC/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZZRa7v7Pqu_bWKU0FmndKUuc8U8dI8ZtXTmlze_uEMuWZCLLOgV6jrhEgkE8PCNIz/exec";
     const submitButton = reservationForm.querySelector('#reservation-submit');
     const feedback = reservationForm.querySelector('#reservation-feedback');
 
-    const successText = "Reserva registrada correctamente. Te esperamos al mediodía.";
+    const successText = "Reserva registrada correctamente.";
     const connectionErrorText = "No se pudo conectar con el sistema de reservas. Intentá nuevamente.";
 
     const showFeedback = (message, type = 'error') => {
@@ -228,13 +228,14 @@
       event.preventDefault();
 
       const nombre = getField('nombre').value.trim();
+      const apellido = getField('apellido').value.trim();
       const telefono = getField('telefono').value.trim();
       const fecha = getField('fecha').value;
       const personas = Number(getField('personas').value);
       const observaciones = getField('observaciones').value.trim();
 
-      if (!nombre || !telefono || !fecha || !personas) {
-        showFeedback('Completá nombre, teléfono, fecha y cantidad de personas para reservar.');
+      if (!nombre || !apellido || !telefono || !fecha || !personas) {
+        showFeedback('Completá nombre, apellido, teléfono, fecha y cantidad de personas para reservar.');
         return;
       }
 
@@ -255,6 +256,7 @@
       try {
         const params = new URLSearchParams();
         params.append('nombre', nombre);
+        params.append('apellido', apellido);
         params.append('telefono', telefono);
         params.append('fecha', fecha);
         params.append('personas', personas);
