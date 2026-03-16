@@ -193,7 +193,7 @@
                 <span>${review.texto}</span>
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
-              <a class="google-badge" href="https://g.page/r/COPIAR-AQUI-TU-LINK-DE-GOOGLE-REVIEWS/review" target="_blank" rel="noopener noreferrer" aria-label="Ver reseñas en Google">
+              <a class="google-badge" href="https://www.google.com/search?sca_esv=2249988ea6ef4f61&sxsrf=ANbL-n5Af_Y0GCnBAIGOopTdEuqPlhSHfQ:1773694052837&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORgSP6Emr14yTLg6lFT-Kg9_QRSbQxXTWbM1QClyS-u2TsH70uUZSnEAjFfRWb_xjdf0UlpzpwVuJ-oYFWWqpa55D6P2DUbdx8FiUwHf0y-YOeg4P9GbOzMxWAmreTdopLecvE0%3D&q=Alioli+-+Restaurante+Las+Compuertas+Opiniones&sa=X&ved=2ahUKEwjnqdafpaWTAxWEFbkGHaVzF7AQ0bkNegQIJBAF&biw=1536&bih=695&dpr=1.25" target="_blank" rel="noopener noreferrer" aria-label="Ver reseñas en Google">
                 <img src="img/google-logo.svg" alt="Google" class="google-badge__icon">
                 <span>Reseñas Google</span>
               </a>
