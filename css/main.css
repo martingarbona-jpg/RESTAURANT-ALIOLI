@@ -1543,18 +1543,34 @@ section,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 120px;
+  gap: 8px;
+  min-width: 140px;
   height: 56px;
   padding: 0 18px;
   border: 1px solid rgba(212, 175, 55, 0.45);
   border-radius: 999px;
   background: rgba(212, 175, 55, 0.08);
   color: #d4af37;
+  text-decoration: none;
   font-weight: 600;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
   margin: -40px 0 0 40px;
   position: relative;
   z-index: 2;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.testimonials .testimonial-item .google-badge:hover,
+.testimonials .testimonial-item .google-badge:focus-visible {
+  background: rgba(212, 175, 55, 0.16);
+  border-color: rgba(212, 175, 55, 0.75);
+  color: #f3d372;
+}
+
+.testimonials .testimonial-item .google-badge__icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .testimonials .testimonial-item h3 {

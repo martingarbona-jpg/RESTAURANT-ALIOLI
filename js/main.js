@@ -193,7 +193,10 @@
                 <span>${review.texto}</span>
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
-              <span class="google-badge" aria-label="Reseñas Google">Reseñas Google</span>
+              <a class="google-badge" href="https://g.page/r/COPIAR-AQUI-TU-LINK-DE-GOOGLE-REVIEWS/review" target="_blank" rel="noopener noreferrer" aria-label="Ver reseñas en Google">
+                <img src="img/google-logo.svg" alt="Google" class="google-badge__icon">
+                <span>Reseñas Google</span>
+              </a>
               <h3>${review.nombre}</h3>
               <h4>${stars}</h4>
             </div>
