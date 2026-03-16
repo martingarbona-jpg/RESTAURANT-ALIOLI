@@ -162,6 +162,62 @@
   window.addEventListener("load", initSwiper);
 
   /**
+   * Load testimonials from JSON and refresh its swiper
+   */
+  async function loadTestimonialsFromJson() {
+    const testimonialsSwiper = document.querySelector('#testimonials .init-swiper');
+    const testimonialsWrapper = testimonialsSwiper?.querySelector('.swiper-wrapper');
+
+    if (!testimonialsSwiper || !testimonialsWrapper) {
+      return;
+    }
+
+    try {
+      const response = await fetch("data/reviews.json");
+      if (!response.ok) {
+        throw new Error(`No se pudo cargar reviews.json (${response.status})`);
+      }
+
+      const reviews = await response.json();
+      const filteredReviews = reviews.filter(review => review.estrellas >= 4).slice(0, 6);
+
+      const defaultAvatar = '/RESTAURANT-ALIOLI/img/testimonials/testimonials-1.jpg';
+
+      testimonialsWrapper.innerHTML = filteredReviews.map((review) => {
+        const stars = '⭐'.repeat(Math.max(0, Math.min(5, Number(review.estrellas) || 0)));
+
+        return `
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <p>
+                <i class="bi bi-quote quote-icon-left"></i>
+                <span>${review.texto}</span>
+                <i class="bi bi-quote quote-icon-right"></i>
+              </p>
+              <img src="${defaultAvatar}" class="testimonial-img" alt="Foto de ${review.nombre}">
+              <h3>${review.nombre}</h3>
+              <h4>${stars}</h4>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (testimonialsSwiper.swiper) {
+        testimonialsSwiper.swiper.destroy(true, true);
+      }
+
+      const config = JSON.parse(
+        testimonialsSwiper.querySelector('.swiper-config').innerHTML.trim()
+      );
+      new Swiper(testimonialsSwiper, config);
+    } catch (error) {
+      console.error('Error al cargar testimonios dinámicos:', error);
+    }
+  }
+
+  window.addEventListener('load', loadTestimonialsFromJson);
+
+  /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
   window.addEventListener('load', function(e) {
