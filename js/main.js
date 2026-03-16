@@ -181,7 +181,6 @@
       const reviews = await response.json();
       const filteredReviews = reviews.filter(review => review.estrellas >= 4).slice(0, 6);
 
-      const defaultAvatar = '/RESTAURANT-ALIOLI/img/testimonials/testimonials-1.jpg';
 
       testimonialsWrapper.innerHTML = filteredReviews.map((review) => {
         const stars = '⭐'.repeat(Math.max(0, Math.min(5, Number(review.estrellas) || 0)));
@@ -194,7 +193,7 @@
                 <span>${review.texto}</span>
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
-              <img src="${defaultAvatar}" class="testimonial-img" alt="Foto de ${review.nombre}">
+              <span class="google-badge" aria-label="Reseñas Google">Reseñas Google</span>
               <h3>${review.nombre}</h3>
               <h4>${stars}</h4>
             </div>
