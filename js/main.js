@@ -288,15 +288,16 @@
     reservationForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      const nombre = getField('nombre').value.trim();
-      const apellido = getField('apellido').value.trim();
+      const nombreApellido = getField('nombre_apellido').value.trim();
       const telefono = getField('telefono').value.trim();
       const fecha = getField('fecha').value;
       const personas = Number(getField('personas').value);
+      const ninosRaw = getField('ninos').value;
+      const ninos = ninosRaw === '' ? 0 : Number(ninosRaw);
       const observaciones = getField('observaciones').value.trim();
 
-      if (!nombre || !apellido || !telefono || !fecha || !personas) {
-        showFeedback('Completá nombre, apellido, teléfono, fecha y cantidad de personas para reservar.');
+      if (!nombreApellido || !telefono || !fecha || !personas) {
+        showFeedback('Completá nombre y apellido, teléfono, fecha y cantidad de personas para reservar.');
         return;
       }
 
@@ -310,17 +311,22 @@
         return;
       }
 
+      if (!Number.isInteger(ninos) || ninos < 0) {
+        showFeedback('La cantidad de niños debe ser 0 o mayor.');
+        return;
+      }
+
       submitButton.disabled = true;
       const originalButtonText = submitButton.textContent;
       submitButton.textContent = 'Enviando...';
 
       try {
         const params = new URLSearchParams();
-        params.append('nombre', nombre);
-        params.append('apellido', apellido);
+        params.append('nombre_apellido', nombreApellido);
         params.append('telefono', telefono);
         params.append('fecha', fecha);
         params.append('personas', personas);
+        params.append('ninos', ninos);
         params.append('observaciones', observaciones || '');
 
         const response = await fetch(APPS_SCRIPT_URL, {

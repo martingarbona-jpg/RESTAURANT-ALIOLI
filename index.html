@@ -521,10 +521,8 @@
         <form id="reservation-form" role="form" class="reservation-form" novalidate>
           <div class="row gy-4">
             <div class="col-lg-4 col-md-6">
-              <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" required="">
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido" required="">
+              <label for="nombre_apellido" class="form-label">Nombre y apellido</label>
+              <input type="text" name="nombre_apellido" class="form-control" id="nombre_apellido" placeholder="Nombre y apellido" required="">
             </div>
             <div class="col-lg-4 col-md-6">
               <input type="tel" class="form-control" name="telefono" id="telefono" placeholder="Teléfono / WhatsApp" required="">
@@ -534,6 +532,10 @@
             </div>
             <div class="col-lg-4 col-md-6">
               <input type="number" class="form-control" name="personas" id="personas" placeholder="Cantidad de personas" min="1" max="20" required="">
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <label for="ninos" class="form-label">Cantidad de niños</label>
+              <input type="number" class="form-control" name="ninos" id="ninos" placeholder="Cantidad de niños" min="0" value="0">
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="reservation-turno" aria-label="Turno fijo">
