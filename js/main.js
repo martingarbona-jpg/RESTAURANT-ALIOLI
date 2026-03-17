@@ -173,16 +173,18 @@
     }
 
     try {
-      const response = await fetch("data/reviews.json");
+      const response = await fetch("./data/reviews.json");
       if (!response.ok) {
         throw new Error(`No se pudo cargar reviews.json (${response.status})`);
       }
 
       const reviews = await response.json();
-      const filteredReviews = reviews.filter(review => review.estrellas >= 4).slice(0, 6);
 
+      if (!Array.isArray(reviews)) {
+        throw new Error("El formato de reviews.json no es válido: se esperaba un array.");
+      }
 
-      testimonialsWrapper.innerHTML = filteredReviews.map((review) => {
+      testimonialsWrapper.innerHTML = reviews.map((review) => {
         const stars = '⭐'.repeat(Math.max(0, Math.min(5, Number(review.estrellas) || 0)));
 
         return `
@@ -213,6 +215,7 @@
       );
       new Swiper(testimonialsSwiper, config);
     } catch (error) {
+      testimonialsWrapper.innerHTML = '';
       console.error('Error al cargar testimonios dinámicos:', error);
     }
   }
