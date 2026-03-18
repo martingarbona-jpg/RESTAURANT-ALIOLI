@@ -521,8 +521,7 @@
         <form id="reservation-form" role="form" class="reservation-form" novalidate>
           <div class="row gy-4">
             <div class="col-lg-4 col-md-6">
-              <label for="nombre_apellido" class="form-label">Nombre y apellido</label>
-              <input type="text" name="nombre_apellido" class="form-control" id="nombre_apellido" placeholder="Nombre y apellido" required="">
+              <input type="text" name="nombre_apellido" class="form-control" id="nombre_apellido" placeholder="Nombre y apellido" aria-label="Nombre y apellido" required="">
             </div>
             <div class="col-lg-4 col-md-6">
               <input type="tel" class="form-control" name="telefono" id="telefono" placeholder="Teléfono / WhatsApp" required="">
@@ -531,11 +530,10 @@
               <input type="date" name="fecha" class="form-control" id="fecha" placeholder="Fecha" required="">
             </div>
             <div class="col-lg-4 col-md-6">
-              <input type="number" class="form-control" name="personas" id="personas" placeholder="Cantidad de personas" min="1" max="20" required="">
+              <input type="number" class="form-control" name="personas" id="personas" placeholder="Adultos" min="1" max="20" aria-label="Adultos" required="">
             </div>
             <div class="col-lg-4 col-md-6">
-              <label for="ninos" class="form-label">Cantidad de niños</label>
-              <input type="number" class="form-control" name="ninos" id="ninos" placeholder="Cantidad de niños" min="0" value="0">
+              <input type="number" class="form-control" name="ninos" id="ninos" placeholder="Niños" min="0" aria-label="Niños">
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="reservation-turno" aria-label="Turno fijo">
